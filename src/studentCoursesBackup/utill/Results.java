@@ -18,9 +18,11 @@ public class Results implements FileDisplayInterface, StdoutDisplayInterface {
     public Map<Integer, List<String>> getTreeResults() {
         return treeResults;
     }
-
-    public Results(String fileName) {
+    public Results(){
         treeResults = new HashMap<>();
+    }
+    public void initialize(String fileName) {
+        this.treeResults.clear();
         try {
             fp = new FileOutputStream(fileName);
             writer =new BufferedWriter(new OutputStreamWriter(fp));
@@ -32,6 +34,7 @@ public class Results implements FileDisplayInterface, StdoutDisplayInterface {
     private void inorder(Node node){
         if(node != null){
             inorder(node.left);
+//            this.writeInFile(nod);
             this.treeResults.put(node.getbNumber(), node.getCourses());
             inorder(node.right);
         }
@@ -40,9 +43,10 @@ public class Results implements FileDisplayInterface, StdoutDisplayInterface {
     public void traverseTree(Node node){
         this.inorder(node);
     }
+
     public void writeResults(){
         String format = "";
-        System.out.println(this.treeResults.size());
+//        System.out.println(this.treeResults.size());
         for(Map.Entry<Integer, List<String>> element: this.treeResults.entrySet()){
             format += element.getKey() +":";
             String courses = "";
@@ -54,6 +58,7 @@ public class Results implements FileDisplayInterface, StdoutDisplayInterface {
             format = "";
         }
     }
+
     @Override
     public void writeInFile(String content) {
         try {

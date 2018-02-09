@@ -28,15 +28,13 @@ public class TreeBuilder{
 
     private  Node insert(Node node, Node currentNode){
         if(currentNode != null && node == null){
-             node = currentNode;
-            return node;
+//             node = currentNode;
+            return currentNode;
         }else{
             if(currentNode.getbNumber() < node.getbNumber()){
                 node.left = insert(node.left, currentNode);
             }else if(currentNode.getbNumber() > node.getbNumber()){
                 node.right = insert(node.right, currentNode);
-            }else{
-                this.addCourses(node,currentNode);
             }
         }
         return node;
@@ -73,9 +71,8 @@ public class TreeBuilder{
 
         Node nodeExist =  this.searchNode(root, bNumber);
 
-        Node backupClone1 = new Node(node);
-        Node backupClone2 = new Node(node);
-
+        Node backupClone1 = node.clone();
+        Node backupClone2 = node.clone();
         //Register the backup notes as a listener to the main subject node
         node.register(backupClone1);
         node.register(backupClone2);

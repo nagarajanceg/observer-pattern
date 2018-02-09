@@ -5,11 +5,11 @@ import studentCoursesBackup.utill.Operations;
 import java.util.ArrayList;
 import java.util.List;
 
-public class Node implements SubjectI, ObserverI,Cloneable {
+public class Node implements SubjectI, ObserverI, Cloneable {
     private int bNumber;
     private List<String> courses = null;
     public Node left,right;
-    private ArrayList<Node> observers = null; //list of observers
+    private List<Node> observers = null; //list of observers
 
     public Node(int bNumberIn, String courseIn  ) {
         this.setbNumber(bNumberIn);
@@ -20,16 +20,6 @@ public class Node implements SubjectI, ObserverI,Cloneable {
         this.observers = new ArrayList<Node>();
     }
 
-    public Node(Node cin){
-        this.setbNumber(cin.getbNumber());
-        this.courses = new ArrayList<String>();
-        this.setLeft(cin.getLeft());
-        this.setRight(cin.getRight());
-        this.observers = new ArrayList<Node>();
-        this.courses.addAll(cin.getCourses());
-        this.observers.addAll(cin.getObservers());
-    }
-
     public void setLeft(Node left) {
         this.left = left;
     }
@@ -38,7 +28,7 @@ public class Node implements SubjectI, ObserverI,Cloneable {
         this.right = right;
     }
 
-    public void setObservers(ArrayList<Node> observers) {
+    public void setObservers(List<Node> observers) {
         this.observers = observers;
     }
 
@@ -51,7 +41,7 @@ public class Node implements SubjectI, ObserverI,Cloneable {
         return right;
     }
 
-    public ArrayList<Node> getObservers() {
+    public List<Node> getObservers() {
         return observers;
     }
 
@@ -72,6 +62,23 @@ public class Node implements SubjectI, ObserverI,Cloneable {
     }
 
     @Override
+    public Node clone(){
+        Node copy = null;
+        try {
+            copy = (Node) super.clone();
+            copy.setbNumber(this.getbNumber());
+            copy.setLeft(this.getLeft());
+            copy.setRight(this.getRight());
+            copy.courses = new ArrayList<>(this.getCourses());
+            copy.observers = new ArrayList<>(this.getObservers());
+            return  copy;
+        } catch (CloneNotSupportedException e) {
+            e.printStackTrace();
+        }
+        return copy;
+    }
+
+    @Override
     public String toString() {
         return "Node{" +
                 "bNumber=" + bNumber +
@@ -80,14 +87,18 @@ public class Node implements SubjectI, ObserverI,Cloneable {
     }
 
     @Override
-    public void register(Node o) {
-        this.observers.add(o);
+    public void register(Node clone) {
+        List<Node> prevObserverList = this.getObservers();
+        prevObserverList.add(clone);
+        this.setObservers(prevObserverList);
     }
 
     @Override
-    public void unregister(Node o) {
-        if(this.observers.indexOf(o) >= 0){
-            this.observers.remove(o);
+    public void unregister(Node clone) {
+        List<Node> prevObserverList = this.getObservers();
+        if(prevObserverList.indexOf(clone) >= 0){
+            prevObserverList.remove(clone);
+            this.setObservers(prevObserverList);
         }
     }
 

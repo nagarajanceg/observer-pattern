@@ -50,4 +50,11 @@ public class TreeBuilderHelper {
             }
         }
     }
+
+    @Override
+    public String toString() {
+        return "TreeBuilderHelper{" +
+                "fp=" + fp +
+                '}';
+    }
 }

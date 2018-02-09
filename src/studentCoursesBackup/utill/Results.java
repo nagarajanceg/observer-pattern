@@ -46,7 +46,6 @@ public class Results implements FileDisplayInterface, StdoutDisplayInterface {
 
     public void writeResults(){
         String format = "";
-//        System.out.println(this.treeResults.size());
         for(Map.Entry<Integer, List<String>> element: this.treeResults.entrySet()){
             format += element.getKey() +":";
             String courses = "";

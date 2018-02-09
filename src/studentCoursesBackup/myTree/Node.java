@@ -103,16 +103,16 @@ public class Node implements SubjectI, ObserverI, Cloneable {
     }
 
     @Override
-    public void myNotifyAll(String courseName, String operation) {
+    public void myNotifyAll(String courseName, Enum operation) {
         for(int i=0; i< this.observers.size(); i++){
             this.observers.get(i).update(courseName, operation);
         }
     }
 
     @Override
-    public void update(String courseNameIn, String operation) {
+    public void update(String courseNameIn, Enum operation) {
         List<String> courseList = this.getCourses();
-        if(Operations.UPDATE.name().equals(operation)){
+        if(Operations.UPDATE.equals(operation)){
             courseList.add(courseNameIn);
         }else{
             courseList.remove(courseNameIn);

@@ -60,7 +60,7 @@ public class TreeBuilder{
         if(Collections.disjoint(currentNode.getCourses(), newCourses) == true){
             newCourses.addAll(currentNode.getCourses());
             node.setCourses(newCourses);
-            node.myNotifyAll(currentNode.getCourses().get(0), Operations.UPDATE.name());
+            node.myNotifyAll(currentNode.getCourses().get(0), Operations.UPDATE);
         }
     }
 
@@ -96,7 +96,7 @@ public class TreeBuilder{
             List<String> courseList = nodeExist.getCourses();
             if(courseList.contains(courseName)){
                 courseList.remove(courseName);
-                nodeExist.myNotifyAll(courseName, Operations.DELETE.name());
+                nodeExist.myNotifyAll(courseName, Operations.DELETE);
                 nodeExist.setCourses(courseList);
             }
         }

@@ -1,25 +1,56 @@
 Basedir: studentCoursesBackup
-To compile:
-	ant -buildfile src/build.xml compile
-To create Jar:
-	ant -buildfile src/build.xml jar
-To run the application:
-	java -jar src/build/jar/observerPattern.jar Driver input.txt delete.txt output1.txt output2.txt output3.txt
-To Clean:
-	ant -buildfile src/build.xml clean
+Assuming you are in the directory containing this README:
 
-Short explanation of code flow
+## To clean:
+ant -buildfile src/build.xml clean
 
-In Driver, Read the input.txt file line by line
+-----------------------------------------------------------------------
+## To compile:
+ant -buildfile src/build.xml all
 
-Driver -> fileProcessor -> Return Reader
-For every line Tree builder create a node and insert in main tree.
-There are two other root references for the back up tree
+-----------------------------------------------------------------------
+## To run by specifying arguments from command line
+## We will use this to run your code
+ant -buildfile src/build.xml run -Darg0="input.txt" -Darg1="delete.txt" -Darg2="output1.txt" -Darg3="output2.txt" -Darg4="output3.txt"
 
-In main tree insertion:
-   First search the created node already available in the tree, if its available return previously created node
-   and check the course name is also available if it's not update the course list.
-For back up tree:
-    Once the node for the main tree created , clone twice for backup and register as observer of the main node.
-    Cloned node is inserted as the same way as the main tree.
-    Clonable interface not suppose to use so cloning manually. Copy constructor is used to clone the nodes.
+-----------------------------------------------------------------------
+##To generate a javadoc from command line
+ant -buildfile src/build.xml doc
+
+-----------------------------------------------------------------------
+"I have done this assignment completely on my own. I have not copied
+ it, nor have I given my solution to anyone else. I understand that if
+ I am involved in plagiarism or cheating I will have to sign an
+ official form that I have cheated and that this form will be stored in
+ my official university record. I also understand that I will receive a
+ grade of 0 for the involved assignment for my first offense and that I
+ will receive a grade of F for the course for any additional
+ offense."
+ [Date:02/10/2018]
+------------------------------------------------------------------------
+Provide justification for Data Structures used in this assignment in
+term of Big O complexity
+
+Search:
+    Time Complexity:
+        Average case with n nodes - O(log n)
+        worst case with n nodes - O(n)
+    Space Complexity:
+        O(n)
+Insert:
+    Time Complexity:
+        Average case with n nodes - O(log n)
+        Worst case - O(n)
+    Space Complexity:
+        O(n)
+Deletion:
+    Time Complexity:
+        Average case with n nodes - O(log n)
+        Worst case - O(n)
+
+
+------------------------------------------------------------------------
+Provide list of citations (urls, etc.)
+ant to generate javadoc: https://stackoverflow.com/questions/1495982/how-to-generate-javadoc-with-ant-for-an-existing-project
+override clone method: http://javarevisited.blogspot.com/2015/01/java-clone-tutorial-part-2-overriding-with-mutable-field-example.html
+Binary search tree: https://en.wikipedia.org/wiki/Binary_search_tree

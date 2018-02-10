@@ -1,13 +1,10 @@
 package studentCoursesBackup.driver;
 
 import studentCoursesBackup.myTree.Node;
-import studentCoursesBackup.utill.FileProcessor;
 import studentCoursesBackup.utill.Results;
 import studentCoursesBackup.utill.TreeBuilder;
 import studentCoursesBackup.utill.TreeBuilderHelper;
 
-import java.io.BufferedReader;
-import java.io.IOException;
 
 public class Driver {
     public void constructResults(String name, Results results,  Node root){
@@ -39,5 +36,10 @@ public class Driver {
         driver.constructResults(args[2], results, tree.getRoot());
         driver.constructResults(args[3], results, tree.getRootBackup1());
         driver.constructResults(args[4], results, tree.getRootBackup2());
+    }
+
+    @Override
+    public String toString() {
+        return "Driver{}";
     }
 }

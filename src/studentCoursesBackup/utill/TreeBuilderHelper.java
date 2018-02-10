@@ -4,7 +4,7 @@ import java.io.BufferedReader;
 import java.io.IOException;
 
 public class TreeBuilderHelper {
-    FileProcessor fp = null;
+    private FileProcessor fp = null;
     public TreeBuilderHelper() {
          fp = new FileProcessor();
     }
@@ -22,15 +22,15 @@ public class TreeBuilderHelper {
             results.writeToDisplay("Exception");
         }finally {
             try {
-                reader.close();
+                if (null != reader) {
+                    reader.close();
+                }
             } catch (IOException e) {
-                results.writeToDisplay("Buffered Reader close IOException");
+                results.writeToDisplay("Buffered Reader close IOException at closing input file");
                 e.printStackTrace();
-
             }
         }
     }
-
     public void deleteFileProcessor(String name, Results results, TreeBuilder tree){
         BufferedReader reader = null;
         try{
@@ -43,9 +43,11 @@ public class TreeBuilderHelper {
             e.printStackTrace();
         }finally {
             try {
-                reader.close();
+                if (reader != null) {
+                    reader.close();
+                }
             } catch (IOException e) {
-                results.writeToDisplay("Buffered Reader close IOException");
+                results.writeToDisplay("Buffered Reader close IOException at closing output file");
                 e.printStackTrace();
             }
         }
@@ -53,8 +55,6 @@ public class TreeBuilderHelper {
 
     @Override
     public String toString() {
-        return "TreeBuilderHelper{" +
-                "fp=" + fp +
-                '}';
+        return "TreeBuilderHelper{}";
     }
 }

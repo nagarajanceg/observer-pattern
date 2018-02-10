@@ -20,28 +20,25 @@ public class Node implements SubjectI, ObserverI, Cloneable {
         this.observers = new ArrayList<Node>();
     }
 
-    public void setLeft(Node left) {
+    private void setLeft(Node left) {
         this.left = left;
     }
 
-    public void setRight(Node right) {
+    private void setRight(Node right) {
         this.right = right;
     }
 
-    public void setObservers(List<Node> observers) {
+    private void setObservers(List<Node> observers) {
         this.observers = observers;
     }
 
-    public Node getLeft() {
+    private Node getLeft() { return left; }
 
-        return left;
-    }
-
-    public Node getRight() {
+    private Node getRight() {
         return right;
     }
 
-    public List<Node> getObservers() {
+    private List<Node> getObservers() {
         return observers;
     }
 
@@ -49,7 +46,7 @@ public class Node implements SubjectI, ObserverI, Cloneable {
         return bNumber;
     }
 
-    public void setbNumber(int bNumber) {
+    private void setbNumber(int bNumber) {
         this.bNumber = bNumber;
     }
 
@@ -104,8 +101,8 @@ public class Node implements SubjectI, ObserverI, Cloneable {
 
     @Override
     public void myNotifyAll(String courseName, Enum operation) {
-        for(int i=0; i< this.observers.size(); i++){
-            this.observers.get(i).update(courseName, operation);
+        for (Node observer : this.getObservers()) {
+            observer.update(courseName, operation);
         }
     }
 

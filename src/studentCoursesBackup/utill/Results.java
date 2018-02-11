@@ -18,9 +18,11 @@ public class Results implements FileDisplayInterface, StdoutDisplayInterface {
     public Map<Integer, List<String>> getTreeResults() {
         return treeResults;
     }
+
     public Results(){
         treeResults = new HashMap<>();
     }
+
     public void initialize(String fileName) {
         this.treeResults.clear();
         try {
@@ -31,17 +33,13 @@ public class Results implements FileDisplayInterface, StdoutDisplayInterface {
             e.printStackTrace();
         }
     }
-    private void inorder(Node node){
-        if(node != null){
-            inorder(node.left);
-//            this.writeInFile(nod);
-            this.treeResults.put(node.getbNumber(), node.getCourses());
-            inorder(node.right);
-        }
-    }
 
-    public void traverseTree(Node node){
-        this.inorder(node);
+    public void printNodes(Node node){
+        if(node != null){
+            printNodes(node.left);
+            this.treeResults.put(node.getbNumber(), node.getCourses());
+            printNodes(node.right);
+        }
     }
 
     public void writeResults(){

@@ -1,7 +1,5 @@
 package studentCoursesBackup.myTree;
 
-import studentCoursesBackup.utill.Operations;
-
 import java.util.ArrayList;
 import java.util.List;
 
@@ -10,7 +8,7 @@ public class Node implements SubjectI, ObserverI, Cloneable {
     private List<String> courses = null;
     public Node left,right;
     private List<Node> observers = null; //list of observers
-
+    //Constructor with parameter
     public Node(int bNumberIn, String courseIn  ) {
         this.setbNumber(bNumberIn);
         this.courses = new ArrayList<String>();
@@ -57,10 +55,11 @@ public class Node implements SubjectI, ObserverI, Cloneable {
     public void setCourses(List<String> courses) {
         this.courses = courses;
     }
-
+    //Clone the node object
     @Override
     public Node clone(){
         Node copy = null;
+        //Below block is referred with http://javarevisited.blogspot.com/2015/01/java-clone-tutorial-part-2-overriding-with-mutable-field-example.html
         try {
             copy = (Node) super.clone();
             copy.setbNumber(this.getbNumber());
@@ -82,14 +81,14 @@ public class Node implements SubjectI, ObserverI, Cloneable {
                 ", courses=" + courses +
                 '}';
     }
-
+    //Register all back up nodes to the main node
     @Override
     public void register(Node clone) {
         List<Node> prevObserverList = this.getObservers();
         prevObserverList.add(clone);
         this.setObservers(prevObserverList);
     }
-
+    //unRegister all back up nodes to the main node
     @Override
     public void unregister(Node clone) {
         List<Node> prevObserverList = this.getObservers();
@@ -98,14 +97,14 @@ public class Node implements SubjectI, ObserverI, Cloneable {
             this.setObservers(prevObserverList);
         }
     }
-
+    //Trigger Notify to inform observers to update the changes made to the main tree
     @Override
     public void myNotifyAll(String courseName, Enum operation) {
         for (Node observer : this.getObservers()) {
             observer.update(courseName, operation);
         }
     }
-
+    // Update the back up nodes based on the enum type of operation
     @Override
     public void update(String courseNameIn, Enum operation) {
         List<String> courseList = this.getCourses();

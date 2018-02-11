@@ -48,6 +48,19 @@ Deletion:
         Average case with n nodes - O(log n)
         Worst case - O(n)
 
+Insertion in binary search tree is simple. I consider about the average case most of the other trees perform same O(log n)
+when compare binary search tree.But in other trees insertion logic is bit of complex like rotation to balance tree or
+maintaining additional property and check. Adding additional property consume more memory and balance a tree took time.
+So BST have these advantages in average cases.
+
+Observer pattern implementation:
+For the very first time node insertion will be happen in all the three trees. Then the course list for a student with
+bNumber already exist in the main tree will be updated and notify all the observers of that changed node. This updates
+will be made in the corresponding back up tree nodes.
+In the case of delete a course, the node is searched and find out in the main tree and removed the course from the list.
+Then notify will be called on successful deletion to inform this change to the observers. Then the updated course list
+propagated to the back up trees as well.
+Observer pattern is implemented for updates and delete.
 
 ------------------------------------------------------------------------
 Provide list of citations (urls, etc.)

@@ -1,10 +1,13 @@
 package studentCoursesBackup.utill;
 
 import studentCoursesBackup.myTree.Node;
+import studentCoursesBackup.myTree.Operations;
+
 import java.util.Collections;
 import java.util.List;
 
 public class TreeBuilder{
+    // Three references for the main and backup trees.
     private Node root ;
     private Node rootBackup1, rootBackup2;
 
@@ -25,10 +28,9 @@ public class TreeBuilder{
     public Node getRootBackup2() {
         return rootBackup2;
     }
-
+    // Insert routine to insert the nodes in the trees
     private  Node insert(Node node, Node currentNode){
         if(currentNode != null && node == null){
-//             node = currentNode;
             return currentNode;
         }else{
             if(currentNode.getbNumber() < node.getbNumber()){
@@ -39,8 +41,8 @@ public class TreeBuilder{
         }
         return node;
     }
-
-    public Node searchNode(Node node, int bNumber){
+    // Search the bNumber in the tree provided
+    private Node searchNode(Node node, int bNumber){
         if(node == null){
             return node;
         }
@@ -54,8 +56,8 @@ public class TreeBuilder{
         }
         return null;
     }
-
-    public void addCourses(Node node, Node currentNode){
+    // Add the course list to the already created node
+    private void addCourses(Node node, Node currentNode){
         List<String> newCourses =  node.getCourses();
         if(Collections.disjoint(currentNode.getCourses(), newCourses) == true){
             newCourses.addAll(currentNode.getCourses());
@@ -63,7 +65,7 @@ public class TreeBuilder{
             node.myNotifyAll(currentNode.getCourses().get(0), Operations.UPDATE);
         }
     }
-
+    // Node creation, cloning and register cloned nodes as listener.
     public void buildTree(String str){
         String[] data = str.split(":");
         Node node = new Node(Integer.valueOf(data[0]), data[1]);
@@ -86,7 +88,7 @@ public class TreeBuilder{
             this.addCourses(nodeExist, node);
         }
     }
-
+    // Search and delete the node in the main tree and notify the backup tree nodes
     public void deleteNodeData(String str){
         String[] data = str.split(":");
         int bNumber = Integer.valueOf(data[0]);

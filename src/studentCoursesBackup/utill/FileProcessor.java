@@ -24,7 +24,7 @@ public class FileProcessor {
         }
         return reader;
     }
-    public String read(BufferedReader reader){
+    public String readLine(BufferedReader reader){
         String line=null;
         if(reader == null){
             return line;

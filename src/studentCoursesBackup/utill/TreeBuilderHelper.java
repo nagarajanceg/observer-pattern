@@ -14,7 +14,7 @@ public class TreeBuilderHelper {
         try{
             String line ;
             reader = fp.readerDesc(name);
-            while((line = fp.read(reader))!= null) {
+            while((line = fp.readLine(reader))!= null) {
                 tree.buildTree(line);
             }
         }catch (Exception e){
@@ -36,7 +36,7 @@ public class TreeBuilderHelper {
         try{
             String line ;
             reader = fp.readerDesc(name);
-            while((line = fp.read(reader))!= null) {
+            while((line = fp.readLine(reader))!= null) {
                 tree.deleteNodeData(line);
             }
         } catch (Exception e){

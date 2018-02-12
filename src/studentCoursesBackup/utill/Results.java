@@ -23,6 +23,10 @@ public class Results implements FileDisplayInterface, StdoutDisplayInterface {
         treeResults = new HashMap<>();
     }
 
+    /**
+     *
+     * @param fileName - output file name
+     */
     public void initialize(String fileName) {
         this.treeResults.clear();
         try {
@@ -31,9 +35,15 @@ public class Results implements FileDisplayInterface, StdoutDisplayInterface {
         } catch (IOException e) {
             System.out.println("File not found");
             e.printStackTrace();
+        }finally {
+
         }
     }
 
+    /**
+     *
+     * @param node - node reference which need to traverse
+     */
     public void printNodes(Node node){
         if(node != null){
             printNodes(node.left);
@@ -46,22 +56,28 @@ public class Results implements FileDisplayInterface, StdoutDisplayInterface {
         String format = "";
         for(Map.Entry<Integer, List<String>> element: this.treeResults.entrySet()){
             format += element.getKey() +":";
-            String courses = "";
+            StringBuffer courses =new StringBuffer();
             for(String course: element.getValue()){
-                courses += " "+course;
+                courses.append(" "+course);
             }
-            format += courses+"\n";
+            format += courses.toString()+"\n";
             this.writeInFile(format);
             format = "";
         }
     }
 
+    /**
+     *
+     * @param content - content to write in a file
+     */
     @Override
     public void writeInFile(String content) {
         try {
             writer.write(content);
         } catch (IOException e) {
             e.printStackTrace();
+        }finally {
+
         }
 
     }
@@ -70,6 +86,8 @@ public class Results implements FileDisplayInterface, StdoutDisplayInterface {
             writer.close();
         } catch (IOException e) {
             e.printStackTrace();
+        }finally {
+
         }
     }
 
@@ -80,6 +98,10 @@ public class Results implements FileDisplayInterface, StdoutDisplayInterface {
                 '}';
     }
 
+    /**
+     *
+     * @param content - content to write in a display
+     */
     @Override
     public void writeToDisplay(String content) {
         System.out.println(content);

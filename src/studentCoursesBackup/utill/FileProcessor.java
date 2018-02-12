@@ -8,8 +8,13 @@ import java.io.InputStreamReader;
 import java.io.IOException;
 
 public class FileProcessor {
+    /**
+     *
+     * @param name - file name
+     * @return reader to given the file name
+     */
     public BufferedReader readerDesc(String name) {
-        FileInputStream fp;
+        FileInputStream fp = null;
         BufferedReader reader = null;
         try {
             fp = new FileInputStream(name);
@@ -20,10 +25,16 @@ public class FileProcessor {
             System.out.println("File Not found");
             System.exit(0);
         } finally {
-            // FileInputStream need to close
+
         }
         return reader;
     }
+
+    /**
+     *
+     * @param reader - BufferedReader for a file
+     * @return a single line in the given reader
+     */
     public String readLine(BufferedReader reader){
         String line=null;
         if(reader == null){

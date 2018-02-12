@@ -9,6 +9,12 @@ public class TreeBuilderHelper {
          fp = new FileProcessor();
     }
 
+    /**
+     *
+     * @param name -Input file name
+     * @param results - Instance used to write in display
+     * @param tree - Instance to create and insert a node in a tree
+     */
     public void inputFileProcessor(String name, Results results, TreeBuilder tree){
         BufferedReader reader = null;
         try{
@@ -31,6 +37,13 @@ public class TreeBuilderHelper {
             }
         }
     }
+
+    /**
+     *
+     * @param name - Name of delete file
+     * @param results - Instance used to write in display
+     * @param tree - Instance to delete a node in a tree
+     */
     public void deleteFileProcessor(String name, Results results, TreeBuilder tree){
         BufferedReader reader = null;
         try{

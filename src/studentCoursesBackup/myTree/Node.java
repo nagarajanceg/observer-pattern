@@ -8,6 +8,12 @@ public class Node implements SubjectI, ObserverI, Cloneable {
     private List<String> courses = null;
     public Node left,right;
     private List<Node> observers = null; //list of observers
+
+    /**
+     *
+     * @param bNumberIn - id for a student
+     * @param courseIn - course for a student
+     */
     //Constructor with parameter
     public Node(int bNumberIn, String courseIn  ) {
         this.setbNumber(bNumberIn);
@@ -81,6 +87,11 @@ public class Node implements SubjectI, ObserverI, Cloneable {
                 ", courses=" + courses +
                 '}';
     }
+
+    /**
+     *
+     * @param clone - node which need to register as a observer of the main node
+     */
     //Register all back up nodes to the main node
     @Override
     public void register(Node clone) {
@@ -88,6 +99,11 @@ public class Node implements SubjectI, ObserverI, Cloneable {
         prevObserverList.add(clone);
         this.setObservers(prevObserverList);
     }
+
+    /**
+     *
+     * @param clone - node which need to unregister as a observer of the main node
+     */
     //unRegister all back up nodes to the main node
     @Override
     public void unregister(Node clone) {
@@ -97,6 +113,12 @@ public class Node implements SubjectI, ObserverI, Cloneable {
             this.setObservers(prevObserverList);
         }
     }
+
+    /**
+     *
+     * @param courseName - updated course name
+     * @param operation - enum operator to represent the type of operation
+     */
     //Trigger Notify to inform observers to update the changes made to the main tree
     @Override
     public void myNotifyAll(String courseName, Enum operation) {
@@ -104,6 +126,12 @@ public class Node implements SubjectI, ObserverI, Cloneable {
             observer.update(courseName, operation);
         }
     }
+
+    /**
+     *
+     * @param courseNameIn - Course to update the observer
+     * @param operation - enum operator to represent the type of operation
+     */
     // Update the back up nodes based on the enum type of operation
     @Override
     public void update(String courseNameIn, Enum operation) {

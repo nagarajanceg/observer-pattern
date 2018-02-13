@@ -6,9 +6,9 @@ import java.io.BufferedWriter;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.OutputStreamWriter;
-import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.TreeMap;
 
 public class Results implements FileDisplayInterface, StdoutDisplayInterface {
     private BufferedWriter writer = null;
@@ -20,7 +20,7 @@ public class Results implements FileDisplayInterface, StdoutDisplayInterface {
     }
 
     public Results(){
-        treeResults = new HashMap<>();
+        treeResults = new TreeMap<>();
     }
 
     /**

@@ -65,7 +65,8 @@ public class Node implements SubjectI, ObserverI, Cloneable {
     @Override
     public Node clone(){
         Node copy = null;
-        //Below block is referred with http://javarevisited.blogspot.com/2015/01/java-clone-tutorial-part-2-overriding-with-mutable-field-example.html
+        //Below block is referred with
+        //http://javarevisited.blogspot.com/2015/01/java-clone-tutorial-part-2-overriding-with-mutable-field-example.html
         try {
             copy = (Node) super.clone();
             copy.setbNumber(this.getbNumber());
